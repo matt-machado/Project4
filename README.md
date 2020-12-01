@@ -75,3 +75,33 @@ int userInput;
     }
   }
 }
+
+
+/*
+
+public String getName() { // returns the name
+ return name;
+}
+
+public int getRank(int getDecade) { // returns the rank of the name in the given decade. Use the convention that decade=0 is 1900, decade=1 is 1910, and so on. 
+
+
+
+
+return ; // FIXME
+}
+
+public int bestYear() { /* –returns the year where the name was most popular, using the earliest year in the event of a tie. Looking at the data above Samir's best year is 2000, while Sandra's best year is 1940. Returns the actual year, for example 1920, so the caller does not need to adjust for START. It is safe to assume that no rank inthe data is ever larger than 1100, and every name has at least one year with a non-zero rank. */
+
+int bestYear = 0; // best year would be 1900 by default
+int maxRank = 0; // compare rankings
+  for (i = 0; i < ***arrayName.length*** ; i++) { // FIXME - 
+    if (***arrayName***[i] > maxRank) {
+      bestYear = (1900) + (10 * i);
+    }
+  }
+
+return bestYear;
+}
+
+*/
