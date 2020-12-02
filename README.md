@@ -79,8 +79,9 @@ int userInput;
 
 /*
 
+
 public String getName() { // returns the name
- return name;
+ return ;
 }
 
 public int getRank(int getDecade) { // returns the rank of the name in the given decade. Use the convention that decade=0 is 1900, decade=1 is 1910, and so on. 
@@ -95,13 +96,34 @@ public int bestYear() { /* –returns the year where the name was most popular, 
 
 int bestYear = 0; // best year would be 1900 by default
 int maxRank = 0; // compare rankings
-  for (i = 0; i < ***arrayName.length*** ; i++) { // FIXME - 
-    if (***arrayName***[i] > maxRank) {
+     
+     }
+    if ( > maxRank) {
       bestYear = (1900) + (10 * i);
     }
   }
 
 return bestYear;
 }
+
+int final DECADES = 11; 
+
+ArrayList<String> eachNameInfo = new ArrayList<String>;
+for (i = 0; i < totalLines ; i++) { 
+   String currentNameInfo = nameList.get(i);
+   String[] oneNameRankings = new String[DECADES + 1]; // first string is the name, next are the rankings for each decade
+  for (j = 0; j < 11; ++j) { 
+      int spaceLoc = currentNameInfo.indexOf(" ");
+      if (j < 11) {
+      int secondSpaceLoc = (currentNameInfo.substring((spaceLoc + 1),      currentNameInfo.length()).indexOf(" "); 
+        oneNameRankings[j] = currentNameInfo.subString((spaceLoc + 1), (secondSpaceLoc));             
+   }
+      else if (j == 11) { 
+        oneNameRankings[j] = currentNameInfo.subString((spaceLoc + 1), (currentNameInfo.length() + 1));            
+      }
+   
+  }
+
+
 
 */
