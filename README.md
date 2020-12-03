@@ -108,22 +108,36 @@ return bestYear;
 
 int final DECADES = 11; 
 
-ArrayList<String> eachNameInfo = new ArrayList<String>;
+ArrayList<Integer[]> eachNameInfo = new ArrayList<Integer[]>;
+Integer[] intNameRankings = new Integer[DECADES];
+String[] oneNameRankings = new String[DECADES + 1]; // first string is the name, next are the rankings for each decade
+
 for (i = 0; i < totalLines ; i++) { 
    String currentNameInfo = nameList.get(i);
-   String[] oneNameRankings = new String[DECADES + 1]; // first string is the name, next are the rankings for each decade
+   
+                          
   for (j = 0; j < 11; ++j) { 
       int spaceLoc = currentNameInfo.indexOf(" ");
-      if (j < 11) {
-      int secondSpaceLoc = (currentNameInfo.substring((spaceLoc + 1),      currentNameInfo.length()).indexOf(" "); 
-        oneNameRankings[j] = currentNameInfo.subString((spaceLoc + 1), (secondSpaceLoc));             
-   }
-      else if (j == 11) { 
-        oneNameRankings[j] = currentNameInfo.subString((spaceLoc + 1), (currentNameInfo.length() + 1));            
+      if (j = 0) { // name
+      int secondSpaceLoc = (currentNameInfo.substring((spaceLoc + 1),  currentNameInfo.length()).indexOf(" "); 
+        oneNameRankings[j] = currentNameInfo.substring((spaceLoc + 1), (secondSpaceLoc)); 
+      }
+      else if (j < 11) { // string of numbers
+      int secondSpaceLoc = (currentNameInfo.substring((spaceLoc + 1),  currentNameInfo.length()).indexOf(" "); 
+        oneNameRankings[j] = currentNameInfo.substring((spaceLoc + 1), (secondSpaceLoc));  
+        
+       }
+      else if (j == 11) { // last number, has no last space.(i think?)
+        oneNameRankings[j] = currentNameInfo.substring((spaceLoc + 1), (currentNameInfo.length() + 1));            
       }
    
-  }
-
-
+   if (j > 0) {
+      intNameRankings[j] = oneNameRankings[j].toInteger();
+   }
+  } // for j
+  
+ eachNameInfo[i] = intNameRankings; /// can scan for the name, use the line number as the [i] to find the ranks. use the decade 1-11 to access which element of intNameRankings needed
+  
+ } // for i
 
 */
