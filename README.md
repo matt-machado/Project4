@@ -5,38 +5,32 @@ import java.io.File;
 import java.util.ArrayList;
 public static void main(String[] args){
 
-try {
- ArrayList<String> nameList = new ArrayList<String>();
-  File f = new File("name_data.txt");
-  Scanner scan = new Scanner(f);
-
-  int totalLines = 0;
-  while(scan.hasNextLine()){
-    scan.nextLine();
-    totalLines++;
-  }
-
-  System.out.println(totalLines);
-
-  scan = new Scanner(f);
-
-  for (int i = 0; i < totalLines; i++) {
-    while(scan.hasNextLine()){
-      String name = scan.next();
-      nameList.add(name);
-      scan.nextLine();
-  }
-  }
- for (int i = 0; i < 1; i++){
-   System.out.println(nameList.get(i));
- }
-
-
-
-}catch(FileNotFoundException e) {
-System.out.println(e.toString());
-}
-int i = 1;
+public static void main(String[] args) {
+      ArrayList<String> listNames = new ArrayList<String>();
+      ArrayList<ArrayList<Integer>> listRanks = new ArrayList<ArrayList<Integer>>();
+ try {
+   Scanner scanFile = new Scanner(new File("name_data.txt"));
+ 
+   while (scanFile.hasNext()) {
+     listNames.add(scanFile.next());
+     ArrayList<Integer> ranks = new ArrayList<Integer>>();
+        for (int i = 0; i < 11; ++i) {
+             ranks.add(scanFile.nextInt());                  
+         }
+         listRanks.add(ranks);                      
+   }
+ 
+   } catch (Exception e) {
+       e.printStackTrace();                        
+                      }
+   } 
+                               
+Scanner t = new Scanner(System.in);
+String target = t.next();
+int index = -1;
+  
+  
+int j = 1;
 int userInput;
   while (i > 0){
     System.out.println("1 - Find best year for a name");
@@ -51,11 +45,40 @@ int userInput;
       case 1:
       System.out.println("Write a name");
       userName = scan.next();
+      // This would be the calling the bestYear()
+      
+   for (int i = 0; i < listNames.size(); ++i) {
+      if (target.equals(listNames.get(i)) {
+          index = i;
+          break;
+       } 
+    }
+  if (index < 0) {
+     System.out.println("Cannot find the name");
+    }
+  else {
+      int year = 0; 
+      int min = 1100;
+      for (int i = 0; i < listRanks.get(index).size(); ++i) {
+           if (listRanks.get(index).get(i) != 0) {
+               if (min > listRanks.get(index).get(i)) {
+                   min = listRanks.get(index).get(i);
+                   year = i;
+               }
+            }
+           }
+        System.out.println("best year = " + (1900 + (10 * year)));
+      }
+      
+      
       break;
 
       case 2:
       System.out.println("Write a name");
       userName = scan.next();
+      
+      // This would be calling bestRank() method, using the year/index to find the best rank???
+      System.out.println("best rank = " + min);
       
       break;
 
@@ -144,8 +167,8 @@ for (i = 0; i < totalLines ; i++) {
 /*
 public class ProfExample {
    public static void main(String[] args) {
-      ArrayList<String> listNames = new ArrayList,String>();
-      ArrayList<ArrayList,Integer>> listRanks = new ArrayList<ArrayList<Integer>>();
+      ArrayList<String> listNames = new ArrayList<String>();
+      ArrayList<ArrayList<Integer>> listRanks = new ArrayList<ArrayList<Integer>>();
  try (
    Scanner scanFile = new Scanner(new File("name_data.txt"));
  
@@ -177,7 +200,7 @@ public class ProfExample {
   }
   else {
       int year = 0; 
-      int min = listRanks.get(index).get(0);
+      int min = 1100;
       for (int i = 0; i < listRanks.get(index).size(); ++i) {
            if (listRanks.get(index).get(i) != 0) {
                if (min > listRanks.get(index).get(i)) {
