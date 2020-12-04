@@ -5,6 +5,67 @@ import java.io.File;
 import java.util.ArrayList;
 public static void main(String[] args){
 
+
+/*
+public class NameRecord { // encapsulates the data for one name; the name and its rank over the years. This is essentially the data of one line from the name_data.txt file.
+   private int final START = 1900; // NameRecord constant START defines the start year of the data
+   private int final DECADES = 11; // NameRecord constant DECADES defines the number of decades in the data
+   Scanner t = new Scanner(System.in); // Scanner for user input of the name
+   
+
+    public void NameRecord() { // Constructor –takes a String line as in the file above and sets up the NameRecord object.
+             ArrayList<String> listNames = new ArrayList<String>(); 
+      ArrayList<ArrayList<Integer>> listRanks = new ArrayList<ArrayList<Integer>>(); // this is the ArrayList for all name's ranks. Each element is an Integer array of the ranks for one name.
+ try (
+   Scanner scanFile = new Scanner(new File("name_data.txt"));
+ 
+   while (scanFile.hasNext()) {
+     listNames.add(scanFile.next());
+     ArrayList<Integer> ranks = new ArrayList<Integer>>(); // this is the array list for one name's ranks
+        for (int i = 0; i < 11; ++i) {
+             ranks.add(scanFile.nextInt());                  
+         }
+         listRanks.add(ranks);                      
+   }
+ )
+   catch (Exception e) {
+       e.printStackTrace();                        
+                      }
+    }
+
+  public String getName() { // returns the name
+      String target = t.next();
+      return target;
+  }
+ 
+ public int getRank(int decade)  { // returns the rank of the name in the given decade. Use the convention that decade=0 is 1900, decade=1 is 1910, and so on. 
+       int index = -1;
+       String target = getName();
+  for (int i = 0; i < listNames.size(); ++i) { // iterates through listNames to find the index of the name the user is looking for
+      if (target.equals(listNames.get(i)) { // if the name is found in the ArrayList, return its index and don't keep looking
+          index = i;
+          break;
+      } 
+  }
+  if (index < 0) { // index -1 means name is not found
+     return -1; // 
+  }
+  else { // return the rank of the name in the given decade. 
+     int rankRet = listRanks.get(index).get(decade); // decade is already provided from 0-11 range.
+     return rankRet;                  
+  }
+  
+  }
+  public int bestYear() {
+           
+  }
+  
+ 
+} // class                            
+*/
+
+
+
 public static void main(String[] args) {
       ArrayList<String> listNames = new ArrayList<String>();
       ArrayList<ArrayList<Integer>> listRanks = new ArrayList<ArrayList<Integer>>();
@@ -32,9 +93,9 @@ int index = -1;
   
 int j = 1;
 int userInput;
-  while (i > 0){
+  while (i > 0){ // FIXME- we need to add code for if the person does not enter 1,2,3,4, or 5
     System.out.println("1 - Find best year for a name");
-    System.out.println("2 - Find best rank for a name");
+    System.out.println("2 - Find best rank for a name"); // different from getRank(decade)
     System.out.println("3 - Plot popularity of a name");
     System.out.println("4 - Clear plot");
     System.out.println("5 - Quit");
@@ -73,7 +134,7 @@ int userInput;
       
       break;
 
-      case 2:
+      case 2: //NOT getRank(). This is a different method.
       System.out.println("Write a name");
       userName = scan.next();
       
@@ -164,39 +225,20 @@ for (i = 0; i < totalLines ; i++) {
  } // for i
 
 */
+
+
 /*
-public class ProfExample {
-   public static void main(String[] args) {
-      ArrayList<String> listNames = new ArrayList<String>();
-      ArrayList<ArrayList<Integer>> listRanks = new ArrayList<ArrayList<Integer>>();
- try (
-   Scanner scanFile = new Scanner(new File("name_data.txt"));
- 
-   while (scanFile.hasNext()) {
-     listNames.add(scanFile.next());
-     ArrayList<Integer> ranks = new ArrayList<Integer>>();
-        for (int i = 0; i < 11; ++i) {
-             ranks.add(scanFile.nextInt());                  
-         }
-         listRanks.add(ranks);                      
-   }
- )
-   catch (Exception e) {
-       e.printStackTrace();                        
-                      }
-   } 
-                               
-  Scanner t = new Scanner(System.in);
-  String target = t.next();
-  int index = -1;
-  for (int i = 0; i < listNames.size(); ++i) {
-      if (target.equals(listNames.get(i)) {
+FOR CASE 2 BESTRank , not getRank
+ int index = -1;
+       String target = getName();
+  for (int i = 0; i < listNames.size(); ++i) { // iterates through listNames to find the index of the name the user is looking for
+      if (target.equals(listNames.get(i)) { // if the name is found in the ArrayList, return its index and don't keep looking
           index = i;
           break;
       } 
   }
-  if (index < 0) {
-     System.out.println("Cannot find the name");
+  if (index < 0) { // index -1 means name is not found
+     return -1; // 
   }
   else {
       int year = 0; 
@@ -212,5 +254,6 @@ public class ProfExample {
       System.out.println("best rank = " + min);
       System.out.println("best year = " + (1900 + (10 * year)));
   }
-}                             
+
+
 */
