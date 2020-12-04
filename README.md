@@ -57,10 +57,33 @@ public class NameRecord { // encapsulates the data for one name; the name and it
   
   }
   public int bestYear() {
-           
+        int index = -1;
+       String target = getName();
+  for (int i = 0; i < listNames.size(); ++i) { // iterates through listNames to find the index of the name the user is looking for
+      if (target.equals(listNames.get(i)) { // if the name is found in the ArrayList, return its index and don't keep looking
+          index = i;
+          break;
+      } 
   }
+  if (index < 0) { // index -1 means name is not found
+     return -1; // 
+  }
+  else {
+      int year = 0; 
+      int min = 1100;
+      for (int i = 0; i < listRanks.get(index).size(); ++i) {
+           if (listRanks.get(index).get(i) != 0) {
+               if (min > listRanks.get(index).get(i)) {
+                   min = listRanks.get(index).get(i);
+                   year = (i * 10) + (1900);
+               } // if
+           } // if
+      } // for
+    return year;
+  }// else
+   
+ } // bestYear
   
- 
 } // class                            
 */
 
