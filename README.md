@@ -100,7 +100,80 @@ public class NameRecord { // encapsulates the data for one name; the name and it
  } // bestYear
 
 } // class
-//-----------------------------------------------------------------------------------------------------------------------------------------                   
+//-----------------------------------------------------------------------------------------------------------------------------------------      
+import java.util.Scanner;
+import java.io.FileNotFoundException;
+import java.io.File;
+import java.util.ArrayList;
+
+public class NameSurfer {
+
+  public static void main(String[] args) {
+
+    ArrayList<NameRecord> nameArray = new ArrayList<NameRecord>();
+// read in the File, for loop, each line passed in to nameRecord constructor?
+try (
+  Scanner scan = new Scanner(new File("name_data.txt"));
+
+  while (scan.hasNextLine()) {
+      nameArray.add(scan.nextLine());
+  }
+      ) // try
+  catch (Exception e) {
+      e.printStackTrace();
+   }
+
+    Scanner s = new Scanner(System.in);
+
+    int userInput;
+    boolean runLoop = true;
+    while (runLoop = true) {
+      System.out.println("1 - Find best year for a name");
+      System.out.println("2 - Find best rank for a name"); // different from getRank(decade)
+      System.out.println("3 - Plot popularity of a name");
+      System.out.println("4 - Clear plot");
+      System.out.println("5 - Quit");
+      System.out.println("Enter your selection.");
+      userInput = s.nextInt();
+      if (userInput == 1) { // find the best year for a name
+          System.out.println("Please enter a name.");
+          int returns = nameArray.bestYear();
+          System.out.println = ("The best year for this name is " + returns);
+      }
+      if (userInput == 2) { // find the best rank for a name.
+        System.out.println("Please enter a name.");
+        int returns = nameArray.bestRank();
+        if (returns == -1) {  
+          System.out.println("Name not found.");
+        }
+        else {
+          System.out.println("The best rank for this name is " + returns);
+        }
+}
+      }
+      if (userInput == 3) { // plot not implemented
+        System.out.println("not implemented.");
+      }
+      if (userInput == 4) { // plot not implemented
+        System.out.println("not implemented.");
+      }
+      if (userInput == 5) { //breaks from loop and finishes program.
+        System.out.println("Quit selected. Goodbye.");
+        runLoop = false;
+        return;
+      }
+      if (userInput != 1
+      && userInput != 2
+      && userInput != 3
+      && userInput != 4
+      && userInput != 5) {
+          System.out.println("Input invalid."); // loop will rerun because runLoop not reassigned.
+      }
+    }
+
+  }
+}
+//------------------------------------------------------------------------------------------------------------------------------------------------
 */
 
 
