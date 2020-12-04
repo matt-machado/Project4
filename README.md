@@ -141,3 +141,53 @@ for (i = 0; i < totalLines ; i++) {
  } // for i
 
 */
+/*
+public class ProfExample {
+   public static void main(String[] args) {
+      ArrayList<String> listNames = new ArrayList,String>();
+      ArrayList<ArrayList,Integer>> listRanks = new ArrayList<ArrayList<Integer>>();
+ try (
+   Scanner scanFile = new Scanner(new File("name_data.txt"));
+ 
+   while (scanFile.hasNext()) {
+     listNames.add(scanFile.next());
+     ArrayList<Integer> ranks = new ArrayList<Integer>>();
+        for (int i = 0; i < 11; ++i) {
+             ranks.add(scanFile.nextInt());                  
+         }
+         listRanks.add(ranks);                      
+   }
+ )
+   catch (Exception e) {
+       e.printStackTrace();                        
+                      }
+   } 
+                               
+  Scanner t = new Scanner(System.in);
+  String target = t.next();
+  int index = -1;
+  for (int i = 0; i < listNames.size(); ++i) {
+      if (target.equals(listNames.get(i)) {
+          index = i;
+          break;
+      } 
+  }
+  if (index < 0) {
+     System.out.println("Cannot find the name");
+  }
+  else {
+      int year = 0; 
+      int min = listRanks.get(index).get(0);
+      for (int i = 0; i < listRanks.get(index).size(); ++i) {
+           if (listRanks.get(index).get(i) != 0) {
+               if (min > listRanks.get(index).get(i)) {
+                   min = listRanks.get(index).get(i);
+                   year = i;
+               }
+           }
+      }
+      System.out.println("best rank = " + min);
+      System.out.println("best year = " + (1900 + (10 * year)));
+  }
+}                             
+*/
