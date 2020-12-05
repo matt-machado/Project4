@@ -14,17 +14,16 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class NameRecord { // encapsulates the data for one name; the name and its rank over the years. This is essentially the data of one line from the name_data.txt file.
-   private int final START = 1900; // NameRecord constant START defines the start year of the data
-   private int final DECADES = 11; // NameRecord constant DECADES defines the number of decades in the data
-   Scanner t = new Scanner(System.in); // Scanner for user input of the name
-   private ArrayList<String> listNames = new ArrayList<String>();
-   private ArrayList<ArrayList<Integer>> listRanks = new ArrayList<ArrayList<Integer>>(); // this is the ArrayList for all name's ranks. Each element is an Integer array of the ranks for one name.
-   private ArrayList<Integer> ranks = new ArrayList<Integer>(); // this is the array list for one name's ranks
+   private static final int START = 1900; // NameRecord constant START defines the start year of the data
+   private static final int DECADES = 11; // NameRecord constant DECADES defines the number of decades in the data
+   static Scanner t = new Scanner(System.in); // Scanner for user input of the name
+   private static ArrayList<String> listNames = new ArrayList<String>();
+   private static ArrayList<ArrayList<Integer>> listRanks = new ArrayList<ArrayList<Integer>>(); // this is the ArrayList for all name's ranks. Each element is an Integer array of the ranks for one name.
+   private static ArrayList<Integer> ranks = new ArrayList<Integer>(); // this is the array list for one name's ranks
 
   public static void NameRecord() { // default constructor
-
- try (
-   Scanner scanFile = new Scanner(new File("name_data.txt"));
+ try {
+   Scanner scanFile = new Scanner (new File("name_data.txt"));
 
    while (scanFile.hasNext()) {
      listNames.add(scanFile.next());
@@ -33,8 +32,8 @@ public class NameRecord { // encapsulates the data for one name; the name and it
          }
      listRanks.add(ranks);
    }
- ) // try
-   catch (Exception e) {
+}
+catch (Exception e) {
        e.printStackTrace();
     }
 
@@ -42,22 +41,27 @@ public class NameRecord { // encapsulates the data for one name; the name and it
   } // NameRecord
 
   public static void NameRecord(String oneLine) {//  Constructor –takes a String line as in the file above and sets up the NameRecord object.
-      listNames.add(oneLine.next());
+    ArrayList<String> listNames2 = new ArrayList<String>();
+   ArrayList<ArrayList<Integer>> listRanks2 = new ArrayList<ArrayList<Integer>>(); // this is the ArrayList for all name's ranks. Each element is an Integer array of the ranks for one name.
+     ArrayList<Integer> ranks2 = new ArrayList<Integer>(); // this is the array list for one name's ranks
+
+    Scanner sc = new Scanner(oneLine);
+      listNames2.add(sc.next());
       for (int i = 0; i < 11; ++i) {
-           ranks.add(oneLine.nextInt());
+           ranks2.add(sc.nextInt());
        }
-   listRanks.add(ranks);
+   listRanks2.add(ranks);
  }
 
   public static String getName() { // returns the name FIXME
-
+    return "THE NAME";
   }
 
  public static int getRank(int decade)  { // returns the rank of the name in the given decade. Use the convention that decade=0 is 1900, decade=1 is 1910, and so on.
        int index = -1;
        String target = t.next();
   for (int i = 0; i < listNames.size(); ++i) { // iterates through listNames to find the index of the name the user is looking for
-      if (target.equals(listNames.get(i)) { // if the name is found in the ArrayList, return its index and don't keep looking
+      if (target.equals(listNames.get(i))) { // if the name is found in the ArrayList, return its index and don't keep looking
           index = i;
           break;
       }
@@ -75,7 +79,7 @@ public class NameRecord { // encapsulates the data for one name; the name and it
         int index = -1;
        String target = t.next();
   for (int i = 0; i < listNames.size(); ++i) { // iterates through listNames to find the index of the name the user is looking for
-      if (target.equals(listNames.get(i)) { // if the name is found in the ArrayList, return its index and don't keep looking
+      if (target.equals(listNames.get(i))) { // if the name is found in the ArrayList, return its index and don't keep looking
           index = i;
           break;
       }
@@ -90,7 +94,7 @@ public class NameRecord { // encapsulates the data for one name; the name and it
            if (listRanks.get(index).get(i) != 0) {
                if (min > listRanks.get(index).get(i)) {
                    min = listRanks.get(index).get(i);
-                   year = (i * 10) + (1900);
+                   year = (i * 10) + (START);
                } // if
            } // if
       } // for
@@ -99,7 +103,33 @@ public class NameRecord { // encapsulates the data for one name; the name and it
 
  } // bestYear
 
+ public static int bestRank() {
+   int index = -1;
+String target = t.next();
+for (int i = 0; i < listNames.size(); ++i) { // iterates through listNames to find the index of the name the user is looking for
+if (target.equals(listNames.get(i))) { // if the name is found in the ArrayList, return its index and don't keep looking
+   index = i;
+   break;
+}
+}
+if (index < 0) { // index -1 means name is not found
+return -1; //
+}
+else {
+int min = START;
+for (int i = 0; i < listRanks.get(index).size(); ++i) {
+    if (listRanks.get(index).get(i) != 0) {
+        if (min > listRanks.get(index).get(i)) {
+            min = listRanks.get(index).get(i);
+        }
+    }
+} // for loop
+return min;
+} // else
+}//bestRank
+
 } // class
+
 //-----------------------------------------------------------------------------------------------------------------------------------------      
 import java.util.Scanner;
 import java.io.FileNotFoundException;
@@ -110,15 +140,15 @@ public class NameSurfer {
 
   public static void main(String[] args) {
 
-    ArrayList<NameRecord> nameArray = new ArrayList<NameRecord>();
-// read in the File, for loop, each line passed in to nameRecord constructor?
-try (
+    NameRecord n = new NameRecord();
+
+try {
   Scanner scan = new Scanner(new File("name_data.txt"));
 
   while (scan.hasNextLine()) {
-      nameArray.add(scan.nextLine());
+    n.NameRecord(scan.nextLine());
   }
-      ) // try
+} // try
   catch (Exception e) {
       e.printStackTrace();
    }
@@ -137,20 +167,20 @@ try (
       userInput = s.nextInt();
       if (userInput == 1) { // find the best year for a name
           System.out.println("Please enter a name.");
-          int returns = nameArray.bestYear();
-          System.out.println = ("The best year for this name is " + returns);
+          int returns = n.bestYear();
+          System.out.println("The best year for this name is " + returns);
       }
       if (userInput == 2) { // find the best rank for a name.
         System.out.println("Please enter a name.");
-        int returns = nameArray.bestRank();
-        if (returns == -1) {  
+        int returns = n.bestRank();
+        if (returns == -1) {
           System.out.println("Name not found.");
         }
         else {
           System.out.println("The best rank for this name is " + returns);
         }
-}
       }
+
       if (userInput == 3) { // plot not implemented
         System.out.println("not implemented.");
       }
@@ -173,6 +203,7 @@ try (
 
   }
 }
+
 //------------------------------------------------------------------------------------------------------------------------------------------------
 */
 
